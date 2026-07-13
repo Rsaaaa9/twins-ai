@@ -216,7 +216,9 @@ def main():
         good_btn.click(switch_good, outputs=[personality, mode_label, good_btn, evil_btn])
         evil_btn.click(switch_evil, outputs=[personality, mode_label, good_btn, evil_btn])
 
-    demo.launch(server_name="127.0.0.1")
+    # 面试用密码锁（从环境变量读取，防止陌生人消耗Token）
+    APP_PASSWORD = os.getenv("TWINS_PASSWORD", "demo2026")
+    demo.launch(server_name="0.0.0.0", auth=("面试官", APP_PASSWORD))
 
 
 if __name__ == "__main__":
